@@ -1,0 +1,27 @@
+{
+  "expo": {
+    "name": "Innovatext",
+    "slug": "Innovatext",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/rocket.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/giphy.gif",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/rocket.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/rocket.png"
+    }
+  }
+}
