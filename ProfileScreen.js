@@ -1,48 +1,93 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import React, { useState } from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Feather as Icon } from '@expo/vector-icons';
+import Home from './Home';
+import Explore from './Explore';
+import Chats from './Chats';
+import Notifications from './Notifications';
+import Settings from './Settings';
+import Profile from './Profile';
 
-const ProfileScreen = ({ navigation }) => {
-  const user = {
-    name: 'Abdurrashid Sani',
-    email: 'abdurrashidsanibng@gmail.com',
-    avatar: require('./images/best.png'), // Replace with actual avatar image
-    achievements: 30, // Replace with actual achievements count
-  };
+const Tab = createBottomTabNavigator();
+
+export default function SocialUI2() {
+  const [hasNewMessages, setHasNewMessages] = useState(true);
+  const [unreadCount, setUnreadCount] = useState(3);
 
   return (
-    <View style={styles.container}>
-      <Image source={user.avatar} style={styles.avatar} />
-      <Text style={styles.name}>{user.name}</Text>
-      <Text style={styles.email}>{user.email}</Text>
-      <Text style={styles.achievements}>Achievements: {user.achievements}</Text>
-    </View>
+    <Tab.Navigator
+      screenOptions={{
+        tabBarActiveTintColor: '#FFA500',
+        tabBarShowLabel: false,
+        tabBarStyle: {
+          backgroundColor: '#0C065AF8',
+        },
+      }}
+    >
+      <Tab.Screen
+        name='Home'
+        component={Home}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <Icon name='home' color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name='Explore'
+        component={Explore}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <Icon name='book' color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name='Chats'
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <Icon name='message-circle' color={color} size={size} />
+          ),
+          tabBarBadge: hasNewMessages ? '●' : null,
+        }}
+      >
+        {() => <Chats hasNewMessages={hasNewMessages} />}
+      </Tab.Screen>
+      <Tab.Screen
+        name='Notifications'
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <Icon name='bell' color={color} size={size} />
+          ),
+          tabBarBadge: unreadCount > 0 ? unreadCount : null,
+        }}
+      >
+        {() => <Notifications unreadCount={unreadCount} />}
+      </Tab.Screen>
+      <Tab.Screen
+        name='Settings'
+        component={Settings}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <Icon name='settings' color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name='Profile'
+        component={Profile}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <Icon name='user' color={color} size={size} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
   );
-};
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    padding: 20,
-  },
-  avatar: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    marginBottom: 20,
-  },
-  name: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  email: {
-    fontSize: 16,
-    marginBottom: 20,
-  },
-  achievements: {
-    fontSize: 16,
-  },
-});
-
-export default ProfileScreen;
+}

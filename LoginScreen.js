@@ -22,7 +22,7 @@ export default function LoginScreen({ navigation }) {
     setTimeout(() => {
       setLoading(false);
       // After successful login, navigate to the profile screen
-      navigation.navigate('Profile');
+      navigation.navigate('ProfileMain');
     }, 2000);
   };
 
@@ -34,13 +34,16 @@ export default function LoginScreen({ navigation }) {
       <ScrollView contentContainerStyle={styles.scrollView}>
         <SafeAreaView style={styles.safeArea}>
           <View>
-            <Image
-              source={require("./images/group.gif")}
-              style={styles.headerImage}
-            />
+            {/* Wrapper View with background color */}
+            <View style={styles.gifWrapper}>
+              <Image
+                source={require("./images/group.gif")}
+                style={styles.headerImage}
+              />
+            </View>
             <View style={styles.container}>
-              <Text style={styles.welcome}>Entrepreneurship Training Platform</Text>
-              <Text style={styles.wise}>Unlock Your Entrepreneurial Spirit</Text>
+              <Text style={styles.welcome}>Join Our Community of Innovators</Text>
+              <Text style={styles.wise}>To unlock Your Entrepreneurial Spirit</Text>
               <TouchableOpacity style={styles.button} onPress={continueWithGoogle}>
                 {loading ? (
                   <ActivityIndicator size="small" color="white" />
@@ -81,11 +84,17 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
   },
+  gifWrapper: {
+    backgroundColor: colors.primary, // Use primary color for background
+    
+    overflow: "hidden", // Clip GIF to rounded corners
+    borderBottomEndRadius:20,
+    borderBottomStartRadius:20,
+    marginBottom: 20,
+  },
   headerImage: {
-
     width: "100%",
-    height:200,
-   
+    height: 200,
   },
   container: {
     display: 'flex',
@@ -95,8 +104,6 @@ const styles = StyleSheet.create({
     gap: 20,
     marginTop: -15,
     backgroundColor: colors.white,
-    borderTopRightRadius: 20,
-    borderTopLeftRadius: 20,
     padding: 10,
   },
   welcome: {
