@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "751308658920",
+    "project_id": "innovatext-e7b0d",
+    "storage_bucket": "innovatext-e7b0d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:751308658920:android:1299da9a67486f1720115d",
+        "android_client_info": {
+          "package_name": "com.innovatext.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCevFMSxL6sFYBWskBKeyB2Itp_b8Q-rUY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
